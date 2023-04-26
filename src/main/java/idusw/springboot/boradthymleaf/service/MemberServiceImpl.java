@@ -1,13 +1,17 @@
 package idusw.springboot.boradthymleaf.service;
 
 import idusw.springboot.boradthymleaf.domain.Member;
+import idusw.springboot.boradthymleaf.domain.Memo;
 import idusw.springboot.boradthymleaf.entity.MemberEntity;
+import idusw.springboot.boradthymleaf.entity.MemoEntity;
 import idusw.springboot.boradthymleaf.repository.MemberRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class MemberServiceImpl implements MemberService {
 
     MemberRepository memberRepository;
@@ -23,6 +27,7 @@ public class MemberServiceImpl implements MemberService {
                 .name(m.getName())
                 .pw(m.getPw())
                 .build();
+        log.info("entity={}", entity);
         if(memberRepository.save(entity) != null) {
             return 1;
         } else {
@@ -32,7 +37,12 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member read(Member m) {
-        return null;
+        MemberEntity e = memberRepository.getById(m.getSeq());
+        Member res = new Member(); // DTO (Data Transfer Object) : Controller - Service or Controller - View
+        res.setSeq(e.getSeq());
+        res.setEmail(e.getEmail());
+        res.setName(e.getName());
+        return res;
     }
 
     @Override
@@ -48,5 +58,17 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int delete(Member m) {
         return 0;
+    }
+
+    @Override
+    public Member login(Member m) {
+        MemberEntity e = memberRepository.getByEmailPw(m.getEmail(), m.getPw());
+        Member res = new Member(); // DTO (Data Transfer Object) : Controller - Service or Controller - View
+        if (e!=null) {
+            res.setSeq(e.getSeq());
+            res.setEmail(e.getEmail());
+            res.setName(e.getName());
+        }
+        return res;
     }
 }
