@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -9,9 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>HSH Blog 2 - Login</title>
+    <title>IduSw - Member Login</title>
 
-    <div th:replace="~{main/main-fragment :: top}"></div>
+    <!-- Custom fonts for this template-->
+    <div th:replace="~{/main/main-fragment :: header}"></div>
 
 </head>
 
@@ -36,12 +37,12 @@
                                     </div>
                                     <form class="user" th:action="@{'/members/login'}" th:object="${member}" th:method="post">
                                         <div class="form-group">
-                                            <input type="email" th:field="*{email}" class="form-control form-control-user"
+                                            <input type="email" name="email" th:field="*{email}" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" th:field="*{pw}" class="form-control form-control-user"
+                                            <input type="password" name="pw" th:field="*{pw}" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">
@@ -51,21 +52,21 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <input type="submit" value="Login" class="btn btn-primary btn-user btn-block"/>
+                                        <input type="submit" value="Login" class="btn btn-primary btn-user btn-block">
                                         <hr>
-                                        <a href="charts" class="btn btn-google btn-user btn-block">
+                                        <a href="../main/index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
-                                        <a href="charts" class="btn btn-facebook btn-user btn-block">
+                                        <a href="../main/index.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password">Forgot Password?</a>
+                                        <a class="small" href="/members/forgot">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register">Create an Account!</a>
+                                        <a class="small" href="/members/register">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +81,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <div th:replace="~{main/main-fragment :: bottom}"></div>
+    <div th:replace="~{/main/main-fragment :: footer}"></div>
 
 </body>
 
