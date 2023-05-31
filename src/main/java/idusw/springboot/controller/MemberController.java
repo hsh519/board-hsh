@@ -51,8 +51,8 @@ public class MemberController {
             return "/errors/404";
         }
     }
-    @GetMapping("/login-form")
-    public String getLoginform(Model model) {
+    @GetMapping("/login")
+    public String getLoginForm(Model model) {
         model.addAttribute("member", Member.builder().build()); // email / pw 전달을 위한 객체
         return "/members/login"; // view : template engine - thymeleaf .html
     }
