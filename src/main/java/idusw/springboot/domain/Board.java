@@ -24,4 +24,6 @@ public class Board {
 
     private LocalDateTime regDate;
     private LocalDateTime modDate;
+
+    private Long replyCount;
 }
